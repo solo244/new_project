@@ -50,7 +50,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          "content/index.html": ["content/template/index.jade"]
+          "index.html": ["content/index.jade"]
         }
       }
     },

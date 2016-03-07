@@ -18,7 +18,7 @@ module.exports = function(grunt) {
     uglify: {
       build: {
         src: 'js/build/production.js',
-        dest: 'js/build/production.min.js'
+        dest: 'build/js/production.min.js'
       }
     },
 
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
       },
       target: {
         files: {
-          'css/build/main.min.css': ['css/build/main.css']
+          'build/css/main.min.css': ['css/build/main.css']
         }
       }
     },
@@ -49,9 +49,13 @@ module.exports = function(grunt) {
             debug: false
           }
         },
-        files: {
-          "index.html": ["content/index.jade"]
-        }
+        files: [{
+          cwd: "content",
+          src: "*.jade",
+          dest: "build",
+          expand: true,
+          ext: ".html"
+        }]
       }
     },
 

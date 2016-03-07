@@ -6,9 +6,7 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
-          'js/libs/jquery-2.1.4.min.js',
-          'js/libs/jquery-ui-1.10.4.min.js',
-          'js/libs/bootstrap.min.js',
+          'js/libs/*.js',
           'js/template/*.js'
         ],
         dest: 'js/build/production.js',
@@ -47,11 +45,12 @@ module.exports = function(grunt) {
         options: {
           data: {
             debug: false
-          }
+          },
+          pretty: true
         },
         files: [{
           cwd: "content",
-          src: "*.jade",
+          src: ["**/*.jade", "!template/*.jade"],
           dest: "build",
           expand: true,
           ext: ".html"
@@ -80,7 +79,7 @@ module.exports = function(grunt) {
         }
       },
       jade: {
-        files: ['content/*.jade', 'content/template/*.jade'],
+        files: ['content/*.jade', 'content/**/*.jade'],
         tasks: ['jade']
       }
     }

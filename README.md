@@ -14,6 +14,8 @@
 
 ## Requirements
 - jQuery version **2.0.0** or higher
+- SASS
+- Jade
 - Grunt
 
 ## Browser compatibility

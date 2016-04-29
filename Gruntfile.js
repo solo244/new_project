@@ -6,24 +6,28 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
-          'js/libs/*.js',
-          'js/template/*.js'
+          'dev/js/libs/*.js',
+          'dev/js/template/*.js'
         ],
-        dest: 'js/build/production.js',
+        dest: 'build/js/main.js',
       }
     },
 
     uglify: {
       build: {
-        src: 'js/build/production.js',
-        dest: 'build/js/production.min.js'
+        src: 'build/js/main.js',
+        dest: 'dist/js/main.js'
       }
     },
 
     sass: {
       dist: {
+        options: {
+          style: 'compressed',
+          noCache: true
+        },
         files: {
-          'css/build/main.css': 'css/template/main.scss'
+          'build/css/style.css': 'dev/css/template/main.scss'
         }
       }
     },
@@ -35,7 +39,7 @@ module.exports = function(grunt) {
       },
       target: {
         files: {
-          'build/css/main.min.css': ['css/build/main.css']
+          'dist/css/style.css': ['build/css/style.css']
         }
       }
     },
@@ -43,28 +47,51 @@ module.exports = function(grunt) {
     jade: {
       compile: {
         options: {
+          basedir: "dev/content/",
           data: {
             debug: false
           },
           pretty: true
         },
         files: [{
-          cwd: "content",
-          src: ["**/*.jade", "!template/*.jade"],
+          cwd: "dev/content",
+          src: ["**/*.jade", "!_template/*.jade"],
           dest: "build",
           expand: true,
           ext: ".html"
-        }]
+        }],
       }
+    },
+
+    htmlmin: {
+      dist: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        expand: true,
+        cwd: "build",
+        src: "**/*.html",
+        dest: "dist/"
+      }
+    },
+
+    copy: {
+      main: {
+        expand: true,
+        cwd: 'dev/images/',
+        src: ['**/*.{png,jpg,gif,ico}'],
+        dest: 'build/images'
+      },
     },
 
     imagemin: {
       dynamic: {
         files: [{
           expand: true,
-          cwd: 'images/',
+          cwd: 'build/images/',
           src: ['**/*.{png,jpg,gif,ico}'],
-          dest: 'build/images/'
+          dest: 'dist/images/'
         }]
       }
     },
@@ -74,23 +101,23 @@ module.exports = function(grunt) {
         livereload: true,
       },
       scripts: {
-        files: ['js/template/*.js'],
-        tasks: ['concat', 'uglify'],
+        files: ['dev/js/template/*.js'],
+        tasks: ['concat'],
         options: {
             spawn: false,
         },
       },
       css: {
         files: [
-          'css/template/*.scss',
+          'dev/css/template/*.scss',
         ],
-        tasks: ['sass', 'cssmin'],
+        tasks: ['sass'],
         options: {
-            spawn: false,
+          spawn: false
         }
       },
       jade: {
-        files: ['content/*.jade', 'content/**/*.jade'],
+        files: ['dev/content/*.jade', 'dev/content/**/*.jade'],
         tasks: ['jade']
       }
     }
@@ -101,9 +128,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-jade');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['concat', 'uglify', 'sass', 'cssmin', 'jade', 'imagemin', 'watch']);
-
+  grunt.registerTask('dev', ['watch']);
+  grunt.registerTask('build', ['concat', 'sass', 'jade', 'copy', 'watch']);
+  grunt.registerTask('dist', ['uglify', 'cssmin', 'htmlmin','imagemin']);
+  grunt.registerTask('full', ['concat', 'uglify', 'sass', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin']);
 };

@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AACQ,sCAA2B;AAC3B,4CAAiC;ACFzC,IAAI;EACF,gBAAgB,ECAD,OAAO",
-"sources": ["../template/main.scss","../template/global.scss","../template/_vars.scss"],
-"names": [],
-"file": "main.css"
-}

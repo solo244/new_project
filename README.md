@@ -14,7 +14,7 @@
 - **Dist:** All build files are compiled for final host purposes in the *dist* folder. These files (css, js, html & images) are optimized for the web (minified & concatenated)
 
 ## For more information
-- [Source and writer](http://kenvandamme.be/) or [on Github as solo244]https://github.com/solo244
+- [Source and writer](http://kenvandamme.be/) or [on Github as solo244](https://github.com/solo244)
 
 ## Requirements/used
 - jQuery **v2.1.4**

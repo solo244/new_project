@@ -47,7 +47,7 @@ module.exports = function(grunt) {
     jade: {
       compile: {
         options: {
-          basedir: "dev/content/",
+          basedir: "dev/content/_template/",
           data: {
             debug: false
           },

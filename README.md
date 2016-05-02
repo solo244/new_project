@@ -13,6 +13,9 @@
 - **Build:** All dev changes are tracked in the *build* folder. These files are compiled for web friendly viewing.
 - **Dist:** All build files are compiled for final host purposes in the *dist* folder. These files (css, js, html & images) are optimized for the web (minified & concatenated)
 
+## On `dist`
+- Remove relative path from directories in `header` & `footer` templates from **/new_project/build/** (to *SERVER*)
+
 ## For more information
 - [Source and writer](http://kenvandamme.be/) or [on Github as solo244](https://github.com/solo244)
 

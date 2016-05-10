@@ -32,6 +32,18 @@ module.exports = function(grunt) {
       }
     },
 
+    postcss: {
+      options: {
+        map: true,
+        processors: [
+          require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
+        ]
+      },
+      dist: {
+        src: 'build/css/style.css'
+      }
+    },
+
     cssmin: {
       options: {
         shorthandCompacting: false,
@@ -128,6 +140,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
@@ -137,6 +150,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev', ['watch']);
   grunt.registerTask('build', ['concat', 'sass', 'jade', 'copy', 'watch']);
-  grunt.registerTask('dist', ['uglify', 'cssmin', 'htmlmin','imagemin']);
-  grunt.registerTask('full', ['concat', 'uglify', 'sass', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin']);
+  grunt.registerTask('dist', ['uglify', 'cssmin', 'postcss', 'htmlmin','imagemin']);
+  grunt.registerTask('full', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin']);
 };

@@ -21,7 +21,6 @@
 
 ## Requirements/used
 - jQuery **v2.1.4**
-- jQuery UI **v1.10.4**
 - Bootstrap **v3.3.6**
 - SASS for `css`
 - Jade for `html`

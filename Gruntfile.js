@@ -3,21 +3,11 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    notify_hooks: {
-      options: {
-        enabled: true,
-        max_jshint_notifications: 5, // maximum number of notifications from jshint output
-        title: "Project Name", // defaults to the name in package.json, or will use project directory's name
-        success: false, // whether successful grunt executions should be notified automatically
-        duration: 3 // the duration of notification in seconds, for `notify-send only
-      }
-    },
-
     concat: {
       dist: {
         src: [
           'dev/js/libs/*.js',
-          'dev/js/template/*.js'
+          'dev/js/main/*.js'
         ],
         dest: 'build/js/main.js',
       }
@@ -36,7 +26,7 @@ module.exports = function(grunt) {
         },
         dist: {
             files: {
-                'build/css/style.css': 'dev/css/template/main.scss'
+                'build/css/style.css': 'dev/css/main.scss'
             }
         }
     },
@@ -124,7 +114,7 @@ module.exports = function(grunt) {
         livereload: true,
       },
       scripts: {
-        files: ['dev/js/template/*.js'],
+        files: ['dev/js/main/*.js'],
         tasks: ['concat'],
         options: {
             spawn: false,
@@ -132,7 +122,10 @@ module.exports = function(grunt) {
       },
       css: {
         files: [
+          'dev/css/modules/*.scss',
+          'dev/css/pages/*.scss',
           'dev/css/template/*.scss',
+          'dev/css/main.scss'
         ],
         tasks: ['sass'],
         options: {
@@ -158,8 +151,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('dev', ['watch']);
-  grunt.registerTask('build', ['concat', 'sass', 'jade', 'copy', 'watch', 'notify_hooks']);
-  grunt.registerTask('dist', ['uglify', 'cssmin', 'postcss', 'htmlmin','imagemin']);
-  grunt.registerTask('full', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin']);
+  grunt.registerTask('default', ['concat', 'sass', 'jade', 'copy', 'watch']);
+  grunt.registerTask('dist', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin']);
 };

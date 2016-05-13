@@ -3,6 +3,16 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    notify_hooks: {
+      options: {
+        enabled: true,
+        max_jshint_notifications: 5, // maximum number of notifications from jshint output
+        title: "Project Name", // defaults to the name in package.json, or will use project directory's name
+        success: false, // whether successful grunt executions should be notified automatically
+        duration: 3 // the duration of notification in seconds, for `notify-send only
+      }
+    },
+
     concat: {
       dist: {
         src: [
@@ -21,15 +31,14 @@ module.exports = function(grunt) {
     },
 
     sass: {
-      dist: {
         options: {
-          style: 'compressed',
-          noCache: true
+            sourceMap: true
         },
-        files: {
-          'build/css/style.css': 'dev/css/template/main.scss'
+        dist: {
+            files: {
+                'build/css/style.css': 'dev/css/template/main.scss'
+            }
         }
-      }
     },
 
     postcss: {
@@ -137,9 +146,10 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-notify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-jade');
@@ -149,7 +159,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('dev', ['watch']);
-  grunt.registerTask('build', ['concat', 'sass', 'jade', 'copy', 'watch']);
+  grunt.registerTask('build', ['concat', 'sass', 'jade', 'copy', 'watch', 'notify_hooks']);
   grunt.registerTask('dist', ['uglify', 'cssmin', 'postcss', 'htmlmin','imagemin']);
   grunt.registerTask('full', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin']);
 };

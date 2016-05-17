@@ -25,6 +25,8 @@
 - SASS for `css`
 - Jade for `html`
 - Grunt **v1.0**
+- Modernizr for that one browser that we all know
+- Google Analytics for juicy stats
 
 ## Browser compatibility
 - Internet Explorer 9+

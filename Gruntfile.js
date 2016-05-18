@@ -1,9 +1,21 @@
 module.exports = function(grunt) {
 
-  /* grunt-ftp-deploy !!!!!! */
+  var current_project_name = "/new_project"; // Name of the project. Has to be the same name as the root local folder. Don't forget to prefix with an "/"!
+  var server = "/blank"; // Name of the subfolder if any, leave blank if root of server. Don't forget to prefix with an "/"!
 
   grunt.initConfig({
+
     pkg: grunt.file.readJSON('package.json'),
+
+    notify_hooks: {
+      options: {
+        enabled: true,
+        max_jshint_notifications: 5,
+        title: "new_project", // Change the name if needed here
+        success: false,
+        duration: 3
+      }
+    },
 
     concat: {
       dist: {
@@ -111,6 +123,26 @@ module.exports = function(grunt) {
       }
     },
 
+    'string-replace': {
+      inline: {
+        files: {
+          'dist/': 'dist/**/*.html',
+        },
+        options: {
+          replacements: [
+            {
+              pattern: '<link rel="stylesheet" type="text/css" href="' + current_project_name + '/build/css/style.css">',
+              replacement: '<link rel="stylesheet" type="text/css" href="' + server + '/css/style.css">'
+            },
+            {
+              pattern: '<script src="' + current_project_name + '/build/js/main.js"></script>',
+              replacement: '<script src="' + server + '/js/main.js"></script>'
+            }
+          ]
+        }
+      }
+    },
+
     watch: {
       options: {
         livereload: true,
@@ -143,13 +175,13 @@ module.exports = function(grunt) {
     'ftp-deploy': {
       build: {
         auth: {
-          host: 'server.com',
+          host: 'ftp.kenvandamme.be',
           port: 21,
-          authKey: 'serverA'
+          authKey: 'kvd'
         },
-        src: 'path/to/source/folder',
-        dest: '/path/to/destination/folder',
-        exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'path/to/dist/tmp']
+        src: 'dist',
+        dest: '/httpdocs/blank',
+        exclusions: ['dist/**/.DS_Store', 'dist/**/Thumbs.db', 'dist/tmp']
       }
     }
   });
@@ -160,6 +192,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -167,7 +200,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-ftp-deploy');
 
+  grunt.task.run('notify_hooks');
   grunt.registerTask('default', ['concat', 'sass', 'jade', 'copy', 'watch']);
   grunt.registerTask('dist', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin']);
-  grunt.registerTask('ftp', ['ftp-deploy']);
+  grunt.registerTask('ftp', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin', 'string-replace', 'ftp-deploy']);
 };

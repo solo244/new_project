@@ -2,7 +2,7 @@
 
 ## Set up
 - Check `package.json`
-- Check `Gruntfile.js`
+- Check `Gruntfile.js` and look at for **//Change** comments
 - npm install to get your node_modules (default **.gitignore**)
 - Update `css` **@imports** to `scss` for easy imports
 
@@ -25,6 +25,15 @@
 ## To publish via FTP
 - Open/create .ftppass and edit/add any server with the specific name: `ServerA` (= the default server name). You can choose a different name by changing it in the **Gruntfile.js** file. Make sure it remains in the **.ignore** for privacy reasons.
 - Run `grunt ftp` (make sure to test and backup remote files _if needed_ first, ftp seems to be a tiny bit fickle sometimes)
+- _If creating an .ftppass file, you could use this code to sit it up:_
+```json
+{
+  "ServerA": {
+    "username": "putyourownusernamehere",
+    "password": "putyourpasswordhere"
+  },
+}
+```
 
 ## For more information
 - [Source and writer](http://kenvandamme.be/) or [on Github as solo244](https://github.com/solo244)

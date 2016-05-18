@@ -138,6 +138,19 @@ module.exports = function(grunt) {
         files: ['dev/content/*.jade', 'dev/content/**/*.jade'],
         tasks: ['jade']
       }
+    },
+
+    'ftp-deploy': {
+      build: {
+        auth: {
+          host: 'server.com',
+          port: 21,
+          authKey: 'serverA'
+        },
+        src: 'path/to/source/folder',
+        dest: '/path/to/destination/folder',
+        exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'path/to/dist/tmp']
+      }
     }
   });
 
@@ -152,7 +165,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-ftp-deploy');
 
   grunt.registerTask('default', ['concat', 'sass', 'jade', 'copy', 'watch']);
   grunt.registerTask('dist', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin']);
+  grunt.registerTask('ftp', ['ftp-deploy']);
 };

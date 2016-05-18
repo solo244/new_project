@@ -3,18 +3,28 @@
 ## Set up
 - Check `package.json`
 - Check `Gruntfile.js`
-- Update `css` **@imports** to `scss`
+- npm install to get your node_modules (default **.gitignore**)
+- Update `css` **@imports** to `scss` for easy imports
 
 ## Organisation
-- **Dev:** Add all content here. *Jade* for html templates
-  - **Content:**: All files and folders are copied from this location, from `jade` to `html`, **excluding** files from the *template* folder
-  - **CSS/template:** Contains all basic custom files -> `main.scss`
-  - **JS/template:** Contains all basic custom files -> `main.js`
-- **Build:** All dev changes are tracked in the *build* folder. These files are compiled for web friendly viewing.
+- **Dev:** Add any and all `development` content here. *Jade* for html templates
+  - **Content:**: All files and folders are copied from this location, from `jade` to `html` format, **excluding** files from the *template* folder
+  - **CSS/modules:** Contains all modular files -> `main.scss`
+  - **CSS/template:** Contains all files for custom/specific pages -> `main.scss`
+  - **CSS/template:** Contains all basic template files -> `main.scss`
+  - **images:** Contains all images. Using subfolder is allowed. Optimization will happen later
+  - **JS/libs:** Contains all vendor files -> `main.js`
+  - **JS/main:** Contains all custom files -> `main.js`
+- **Build:** All dev changes are tracked in the *build* folder. These files are compiled for web friendly viewing. This is the working test directory when running a local server.
 - **Dist:** All build files are compiled for final host purposes in the *dist* folder. These files (css, js, html & images) are optimized for the web (minified & concatenated)
 
-## On `dist`
-- Remove relative path from directories in `header` & `footer` templates from **/new_project/build/** (to *SERVER*)
+## When using `dist` to go live
+- Remove relative path from directories in `header` & `footer` templates from **/new_project/build/** (relative to the actual *SERVER*)
+- Run `grunt dist`
+
+## To publish via FTP
+- Open/create .ftppass and edit/add any server with the specific name: `ServerA` (= the default server name). You can choose a different name by changing it in the **Gruntfile.js** file. Make sure it remains in the **.ignore** for privacy reasons.
+- Run `grunt ftp` (make sure to test and backup remote files _if needed_ first, ftp seems to be a tiny bit fickle sometimes)
 
 ## For more information
 - [Source and writer](http://kenvandamme.be/) or [on Github as solo244](https://github.com/solo244)

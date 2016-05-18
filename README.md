@@ -1,5 +1,8 @@
 # New projects
 
+## Preview
+- You can preview this set up on [http://kenvandamme.be/blank](http://kenvandamme.be/blank) for now to get an idea of the set up.
+
 ## Set up
 - Check `package.json`
 - Check `Gruntfile.js` and look at for **//Change** comments

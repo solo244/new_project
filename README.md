@@ -26,15 +26,19 @@
 - Run `grunt dist`
 
 ## To publish via FTP
-- Open/create .ftppass and edit/add any server with the specific name: `ServerA` (= the default server name). You can choose a different name by changing it in the **Gruntfile.js** file. Make sure it remains in the **.ignore** for privacy reasons.
+- Open/create .ftppass and edit/add any server with the specific name: `ServerA` (= the default server name) - this file needs to be in the same place as your **Gruntfile.js**. You can choose a different name by changing it in the **Gruntfile.js** file. Make sure it remains in the **.ignore** for privacy reasons.
 - Run `grunt ftp` (make sure to test and backup remote files _if needed_ first, ftp seems to be a tiny bit fickle sometimes)
-- _If creating an .ftppass file, you could use this code to sit it up:_
+- _If creating an .ftppass file, you could use this code to set it up:_
 ```json
 {
   "ServerA": {
     "username": "putyourownusernamehere",
     "password": "putyourpasswordhere"
   },
+  "anotherServerBifYouNeedItButItsOptional": {
+    "username": "putyourownusernamehere",
+    "password": "putyourpasswordhere"
+  }
 }
 ```
 

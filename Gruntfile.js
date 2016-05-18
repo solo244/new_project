@@ -177,7 +177,7 @@ module.exports = function(grunt) {
         auth: {
           host: 'ftp.kenvandamme.be',
           port: 21,
-          authKey: 'kvd'
+          authKey: 'kvd' // Change server name
         },
         src: 'dist',
         dest: '/httpdocs/blank',

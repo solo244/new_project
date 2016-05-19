@@ -1,11 +1,11 @@
 # New projects
 
 ## Preview
-- You can preview this set up on [http://kenvandamme.be/blank](http://kenvandamme.be/blank) for now to get an idea of the set up.
+- You can preview this on [http://kenvandamme.be/blank](http://kenvandamme.be/blank) for now to get an idea of the set up.
 
 ## Set up
 - Check `package.json`
-- Check `Gruntfile.js` and look at for **//Change** comments
+- Check `Gruntfile.js` and look at **//Change** comments
 - npm install to get your node_modules (default **.gitignore**)
 - Update `css` **@imports** to `scss` for easy imports
 
@@ -26,7 +26,7 @@
 - Run `grunt dist`
 
 ## To publish via FTP
-- Open/create .ftppass and edit/add any server with the specific name: `ServerA` (= the default server name) - this file needs to be in the same place as your **Gruntfile.js**. You can choose a different name by changing it in the **Gruntfile.js** file. Make sure it remains in the **.ignore** for privacy reasons.
+- Open/create .ftppass and edit/add any server with the specific name: `ServerA` (= the default server name). But don't forget that this file needs to be in the same location as your **Gruntfile.js**. You can choose a different name by changing it in the **Gruntfile.js**. Make sure it remains in the **.ignore** for privacy reasons.
 - Run `grunt ftp` (make sure to test and backup remote files _if needed_ first, ftp seems to be a tiny bit fickle sometimes)
 - _If creating an .ftppass file, you could use this code to set it up:_
 ```json
@@ -35,7 +35,7 @@
     "username": "putyourownusernamehere",
     "password": "putyourpasswordhere"
   },
-  "anotherServerBifYouNeedItButItsOptional": {
+  "anotherServerifYouNeedItButItsOptional": {
     "username": "putyourownusernamehere",
     "password": "putyourpasswordhere"
   }
@@ -60,6 +60,3 @@
 - Chrome
 - Opera
 - Safari
-
-## License
-It's on the internet, so yea :P

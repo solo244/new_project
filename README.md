@@ -10,7 +10,7 @@
 - Update `css` **@imports** to `scss` for easy imports
 
 ## Organisation
-- **Dev:** Add any and all `development` content here. *Jade* for html templates
+- **Dev:** Add any and all `development` content here. `Jade` for html templates
   - **Content:**: All files and folders are copied from this location, from `jade` to `html` format, **excluding** files from the  *template* folder
   - **CSS/modules:** Contains all modular files -> `main.scss`
   - **CSS/template:** Contains all files for custom/specific pages -> `main.scss`
@@ -22,8 +22,7 @@
 - **Dist:** All build files are compiled for final host purposes in the *dist* folder. These files (css, js, html & images) are optimized for the web (minified & concatenated)
 
 ## When using `dist` to go live
-- Remove relative path from directories in `header` & `footer` templates from **/new_project/build/** (relative to the actual *SERVER*)
-- Run `grunt dist`
+- Run `grunt dist` and upload to host
 
 ## To publish via FTP
 - Open/create .ftppass and edit/add any server with the specific name: `ServerA` (= the default server name). But don't forget that this file needs to be in the same location as your **Gruntfile.js**. You can choose a different name by changing it in the **Gruntfile.js**. Make sure it remains in the **.ignore** for privacy reasons.

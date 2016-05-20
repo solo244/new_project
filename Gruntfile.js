@@ -1,7 +1,15 @@
 module.exports = function(grunt) {
 
-  var current_project_name = "/new_project"; // Name of the project. Has to be the same name as the root local folder. Don't forget to prefix with an "/"!
+  // Change these settings
+  var project_name = "new_project"; // Name of the project - for notifications
+  var root_project_name = "/new_project"; // Name of the project. Same as the root local folder. Don't forget to prefix with an "/"!
   var server = "/blank"; // Name of the subfolder if any, leave blank if root of server. Don't forget to prefix with an "/"!
+  var localhost = "http://localhost/new_project/build/"; // Define if your using a server
+
+  // Optional FTP settings
+  var server_key = "serverA"; // Defined in your .ftppass file
+  var ftp_host = "ftp.something.com"; // Host location
+  var upload_location = "/httpdocs/folder"; // Destination folder for ftp
 
   require('time-grunt')(grunt);
 
@@ -13,7 +21,7 @@ module.exports = function(grunt) {
       options: {
         enabled: true,
         max_jshint_notifications: 5,
-        title: "new_project", // Change the name if needed here
+        title: project_name,
         success: false,
         duration: 3
       }
@@ -81,7 +89,7 @@ module.exports = function(grunt) {
         },
         options: {
           watchTask: true,
-          proxy: "http://localhost/new_project/build/" // Change the server name if needed
+          proxy: localhost
           /*
             OR run the static server it ships with:
             server: {
@@ -154,11 +162,11 @@ module.exports = function(grunt) {
         options: {
           replacements: [
             {
-              pattern: '<link rel="stylesheet" type="text/css" href="' + current_project_name + '/build/css/style.css">',
+              pattern: '<link rel="stylesheet" type="text/css" href="' + root_project_name + '/build/css/style.css">',
               replacement: '<link rel="stylesheet" type="text/css" href="' + server + '/css/style.css">'
             },
             {
-              pattern: '<script src="' + current_project_name + '/build/js/main.js"></script>',
+              pattern: '<script src="' + root_project_name + '/build/js/main.js"></script>',
               replacement: '<script src="' + server + '/js/main.js"></script>'
             }
           ]
@@ -198,12 +206,12 @@ module.exports = function(grunt) {
     'ftp-deploy': {
       build: {
         auth: {
-          host: 'ftp.kenvandamme.be',
+          host: ftp_host,
           port: 21,
-          authKey: 'kvd' // Change server name
+          authKey: server_key
         },
         src: 'dist',
-        dest: '/httpdocs/blank',
+        dest: upload_location,
         exclusions: ['dist/**/.DS_Store', 'dist/**/Thumbs.db', 'dist/tmp']
       }
     }

@@ -5,13 +5,13 @@
 
 ## Set up
 - Check `package.json`
-- Check `Gruntfile.js` and look at **//Change** comments
+- Check `Gruntfile.js` and look at **//Change** comments (settings at the top)
 - npm install to get your node_modules (default **.gitignore**)
 - Update `css` **@imports** to `scss` for easy imports
 
 ## Organisation
 - **Dev:** Add any and all `development` content here. *Jade* for html templates
-  - **Content:**: All files and folders are copied from this location, from `jade` to `html` format, **excluding** files from the *template* folder
+  - **Content:**: All files and folders are copied from this location, from `jade` to `html` format, **excluding** files from the  *template* folder
   - **CSS/modules:** Contains all modular files -> `main.scss`
   - **CSS/template:** Contains all files for custom/specific pages -> `main.scss`
   - **CSS/template:** Contains all basic template files -> `main.scss`

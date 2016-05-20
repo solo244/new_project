@@ -3,6 +3,8 @@ module.exports = function(grunt) {
   var current_project_name = "/new_project"; // Name of the project. Has to be the same name as the root local folder. Don't forget to prefix with an "/"!
   var server = "/blank"; // Name of the subfolder if any, leave blank if root of server. Don't forget to prefix with an "/"!
 
+  require('time-grunt')(grunt);
+
   grunt.initConfig({
 
     pkg: grunt.file.readJSON('package.json'),
@@ -65,6 +67,27 @@ module.exports = function(grunt) {
       target: {
         files: {
           'dist/css/style.css': ['build/css/style.css']
+        }
+      }
+    },
+
+    browserSync: {
+      dev: {
+        bsFiles: {
+          src : [
+            'build/css/*.css',
+            'build/**/*.html'
+          ]
+        },
+        options: {
+          watchTask: true,
+          proxy: "http://localhost/new_project/build/" // Change the server name if needed
+          /*
+            OR run the static server it ships with:
+            server: {
+              baseDir: "./"
+            }
+          */
         }
       }
     },
@@ -192,6 +215,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-browser-sync');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
@@ -201,7 +225,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-ftp-deploy');
 
   grunt.task.run('notify_hooks');
-  grunt.registerTask('default', ['concat', 'sass', 'jade', 'copy', 'watch']);
+
+  grunt.registerTask('default', ['concat', 'sass', 'jade', 'copy', 'browserSync', 'watch']);
   grunt.registerTask('dist', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin']);
   grunt.registerTask('ftp', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin', 'string-replace', 'ftp-deploy']);
 };

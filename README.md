@@ -12,8 +12,8 @@
 ## Organisation
 - **Dev:** Add any and all `development` content here. `Jade` for html templates
   - **Content:**: All files and folders are copied from this location, from `jade` to `html` format, **excluding** files from the  *template* folder
-  - **CSS/modules:** Contains all modular files -> `main.scss`
-  - **CSS/template:** Contains all files for custom/specific pages -> `main.scss`
+  - **CSS/module:** Contains all modular files -> `main.scss`
+  - **CSS/page:** Contains all files for custom/specific pages -> `main.scss`
   - **CSS/template:** Contains all basic template files -> `main.scss`
   - **images:** Contains all images. Using subfolder is allowed. Optimization will happen later
   - **JS/libs:** Contains all vendor files -> `main.js`

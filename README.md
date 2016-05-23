@@ -4,10 +4,12 @@
 - You can preview this on [http://kenvandamme.be/blank](http://kenvandamme.be/blank) for now to get an idea of the set up.
 
 ## Set up
-- Check `package.json`
-- Check `Gruntfile.js` and look at **//Change** comments (settings at the top)
-- npm install to get your node_modules (default **.gitignore**)
-- Update `css` **@imports** to `scss` for easy imports
+1. Clone files to a new directory
+2. `cd` to the this directory via command line/terminal
+3. Run `npm install grunt` to get your node_modules (default **.gitignore**)
+4. Run `npm install grunt-postcss pixrem autoprefixer-core cssnano`
+5. Check `Gruntfile.js` and look at **//Change** comments (settings at the top)
+6. Update `css` **@imports** to `scss` for easy imports (optional)
 
 ## Organisation
 - **Dev:** Add any and all `development` content here. `Jade` for html templates

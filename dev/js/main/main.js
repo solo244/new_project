@@ -10,7 +10,7 @@
      */
     function started(e){
       var $this = $(this);
-      console.log("We've got lift off!");
+      console.log("File main.js is loaded");
     }
 
     /*

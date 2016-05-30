@@ -1,15 +1,15 @@
 module.exports = function(grunt) {
 
-  // Change these settings
+  // Change these local settings
   var project_name = "new_project"; // Name of the project - for notifications
-  var root_project_name = "/new_project"; // Name of the project. Same as the root local folder. Don't forget to prefix with an "/"!
-  var server = "/blank"; // Name of the subfolder if any, leave blank if root of server. Don't forget to prefix with an "/"!
   var localhost = "http://localhost/new_project/build/"; // Define if your using a server
 
   // Optional FTP settings
   var server_key = "serverA"; // Defined in your .ftppass file
-  var ftp_host = "ftp.something.com"; // Host location
+  var ftp_host = "ftp.somedomain.com"; // Host location
   var upload_location = "/httpdocs/folder"; // Destination folder for ftp
+  var root_project_name = "/new_project"; // Local folder containing the project. Prefix with an "/"!
+  var server = "/folder"; // Online subfolder containing the project. Prefix with an "/"!
 
   require('time-grunt')(grunt);
 
@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         max_jshint_notifications: 5,
         title: project_name,
         success: false,
-        duration: 3
+        duration: 2
       }
     },
 
@@ -119,26 +119,21 @@ module.exports = function(grunt) {
       }
     },
 
-    htmlmin: {
-      dist: {
-        options: {
-          removeComments: true,
-          collapseWhitespace: true
-        },
-        expand: true,
-        cwd: "build",
-        src: "**/*.html",
-        dest: "dist/"
-      }
-    },
-
     copy: {
       main: {
-        files: [{
+        images: [{
           expand: true,
           cwd: 'dev/images/',
           src: ['**/*.{png,jpg,gif,ico}'],
           dest: 'build/images'
+        }]
+      },
+      docs: {
+        files: [{
+          expand: true,
+          cwd: 'build/',
+          src: ['**/*.html'],
+          dest: 'dist/'
         }]
       },
     },
@@ -174,6 +169,17 @@ module.exports = function(grunt) {
       }
     },
 
+    replace: {
+      another_example: {
+        src: ['dist/**/*.html'],
+        overwrite: true,
+        replacements: [{
+          from: 'href="' + root_project_name + '/build',
+          to: 'href="' + server
+        }]
+      }
+    },
+
     watch: {
       options: {
         livereload: true,
@@ -204,7 +210,7 @@ module.exports = function(grunt) {
     },
 
     'ftp-deploy': {
-      build: {
+      dist: {
         auth: {
           host: ftp_host,
           port: 21,
@@ -225,8 +231,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-browser-sync');
   grunt.loadNpmTasks('grunt-string-replace');
+  grunt.loadNpmTasks('grunt-text-replace');
   grunt.loadNpmTasks('grunt-contrib-jade');
-  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -234,7 +240,7 @@ module.exports = function(grunt) {
 
   grunt.task.run('notify_hooks');
 
-  grunt.registerTask('default', ['concat', 'sass', 'jade', 'copy', 'browserSync', 'watch']);
-  grunt.registerTask('dist', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin']);
-  grunt.registerTask('ftp', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'htmlmin', 'copy', 'imagemin', 'string-replace', 'ftp-deploy']);
+  grunt.registerTask('default', ['concat', 'sass', 'jade', 'copy:main', 'browserSync', 'watch']);
+  grunt.registerTask('dist', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'copy', 'imagemin']);
+  grunt.registerTask('ftp', ['concat', 'uglify', 'sass', 'postcss', 'cssmin', 'jade', 'copy', 'imagemin', 'string-replace', 'replace', 'ftp-deploy']);
 };

@@ -10,6 +10,7 @@
 4. Run `npm install grunt-postcss pixrem autoprefixer-core cssnano`
 5. Check `Gruntfile.js` and look at **//Change** comments (settings at the top)
 6. Update `css` **@imports** to `scss` for easy imports (optional)
+7. Run `grunt` to start developing
 
 ## Organisation
 - **Dev:** Add any and all `development` content here. `Jade` for html templates

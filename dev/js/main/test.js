@@ -10,7 +10,7 @@
      */
     function started(e){
       var $this = $(this);
-      console.log("Loaded another file ;)");
+      console.log("File test.js is loaded");
     }
 
     /*

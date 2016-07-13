@@ -1,4 +1,4 @@
-# New projects
+# New projects using Grunt
 
 ## Preview
 - You can preview this on [http://kenvandamme.be/blank](http://kenvandamme.be/blank) for now to get an idea of the set up.

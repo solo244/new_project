@@ -25,11 +25,11 @@
 - **Dist:** All build files are compiled for final host purposes in the *dist* folder. These files (css, js, html & images) are optimized for the web (minified & concatenated)
 
 ## When using `dist` to go live
-- Run `grunt dist` and upload to host
+- Run `grunt dist` and upload everything in the `dist` folder to host via FTP.
 
 ## To publish via FTP
 - Open/create .ftppass and edit/add any server with the specific name: `ServerA` (= the default server name). But don't forget that this file needs to be in the same location as your **Gruntfile.js**. You can choose a different name by changing it in the **Gruntfile.js**. Make sure it remains in the **.ignore** for privacy reasons.
-- Run `grunt ftp` (make sure to test and backup remote files _if needed_ first, ftp seems to be a tiny bit fickle sometimes)
+- Run `grunt ftp` (make sure to test and backup remote files _if needed_ first)
 - _If creating an .ftppass file, you could use this code to set it up:_
 ```json
 {

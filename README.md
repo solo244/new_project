@@ -6,7 +6,7 @@
 ## Set up
 1. Clone files to a new directory
 2. `cd` to the this directory via command line/terminal
-3. Run `npm install grunt` to get your node_modules (default **.gitignore**)
+3. Run `npm install` to get your node_modules (default **.gitignore**)
 4. Run `npm install grunt-postcss pixrem autoprefixer-core cssnano`
 5. Check `Gruntfile.js` and look at **//Change** comments (settings at the top)
 6. Update `css` **@imports** to `scss` for easy imports (optional)

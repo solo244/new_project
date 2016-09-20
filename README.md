@@ -1,22 +1,18 @@
 # New projects using Grunt
 
-## Preview
-- You can preview this on [http://kenvandamme.be/blank](http://kenvandamme.be/blank) for now to get an idea of the set up.
-
 ## Set up
 1. Clone files to a new directory
 2. `cd` to the this directory via command line/terminal
 3. Run `npm install` to get your node_modules (default **.gitignore**)
 4. Run `npm install grunt-postcss pixrem autoprefixer-core cssnano`
 5. Check `Gruntfile.js` and look at **//Change** comments (settings at the top)
-6. Update `css` **@imports** to `scss` for easy imports (optional)
-7. Run `grunt` to start developing
+6. Run `grunt` to start developing
 
 ## Organisation
 - **Dev:** Add any and all `development` content here. `Jade` for html templates
-  - **Content:**: All files and folders are copied from this location, from `jade` to `html` format, **excluding** files from the  *template* folder
-  - **CSS/module:** Contains all modular files -> `main.scss`
-  - **CSS/page:** Contains all files for custom/specific pages -> `main.scss`
+  - **Content:**: All files and folders are copied from this location, from `jade` to `html` format, **excluding** files from the  *_template* folder
+  - **CSS/modules:** Contains all modular files -> `main.scss`
+  - **CSS/pages:** Contains all files for custom/specific pages -> `main.scss`
   - **CSS/template:** Contains all basic template files -> `main.scss`
   - **images:** Contains all images. Using subfolder is allowed. Optimization will happen later
   - **JS/libs:** Contains all vendor files -> `main.js`
@@ -48,11 +44,10 @@
 - [Source and writer](http://kenvandamme.be/) or [on Github as solo244](https://github.com/solo244)
 
 ## Requirements/used
-- jQuery **v2.1.4**
-- Bootstrap **v3.3.6**
+- jQuery
 - SASS for `css`
 - Jade for `html`
-- Grunt **v1.0**
+- Grunt
 - Modernizr for that one browser that we all know
 - Google Analytics for juicy stats
 

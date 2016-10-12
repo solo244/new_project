@@ -1,4 +1,4 @@
-# New projects using Grunt
+# New projects using Grunt v1.0
 
 ## Set up
 1. Clone files to a new directory
